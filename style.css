@@ -9,6 +9,7 @@
 
 body {
   font-family: "montserrat", sans-serif;
+  font-weight: 500;
 }
 
 i,
@@ -106,6 +107,26 @@ svg {
 
 .mute.active {
   background: rgb(185, 185, 185);
+}
+
+.tempo {
+  width: 30%;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.temp-slider {
+  -webkit-appearance: none;
+  margin: 1rem 0;
+  position: relative;
+  background: rgb(185, 185, 185);
+  cursor: pointer;
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.tempo p {
+  font-size: 1.5rem;
 }
 
 /* Animations */
