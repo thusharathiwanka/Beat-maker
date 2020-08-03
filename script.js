@@ -63,10 +63,10 @@ class DrumKit {
   updateBtn() {
     if (this.isPlaying == null) {
       this.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-      this.classList.add("active");
+      this.playBtn.classList.remove("active");
     } else {
       this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      this.classList.remove("active");
+      this.playBtn.classList.add("active");
     }
   }
 
