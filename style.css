@@ -104,6 +104,10 @@ svg {
   font-size: 1.5rem;
 }
 
+.mute.active {
+  background: rgb(185, 185, 185);
+}
+
 /* Animations */
 @keyframes playTrack {
   from {

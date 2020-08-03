@@ -9,9 +9,11 @@ class DrumKit {
     this.snareAudio = document.querySelector(".snare-sound");
     this.hihatAudio = document.querySelector(".hihat-sound");
     this.selects = document.querySelectorAll("select");
+    this.muteBtns = document.querySelectorAll(".mute");
     this.index = 0;
     this.beatsPerMin = 150;
     this.isPlaying = null;
+    this.isMuted = null;
   }
 
   activePad() {
@@ -78,8 +80,37 @@ class DrumKit {
       this.hihatAudio.src = selectedValue;
     }
   }
-}
 
+  muteSound(event) {
+    const muteIndex = event.target.getAttribute("data-track");
+    event.target.classList.toggle("active");
+
+    //Changing mute button icons
+    if (this.isMuted == null && event.target.classList.contains("active")) {
+      this.muteBtns[muteIndex].innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+      this.muteBtns[muteIndex].innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
+
+    if (event.target.classList.contains("active")) {
+      if (muteIndex == 0) {
+        this.kickAudio.volume = 0;
+      } else if (muteIndex == 1) {
+        this.snareAudio.volume = 0;
+      } else if (muteIndex == 2) {
+        this.hihatAudio.volume = 0;
+      }
+    } else {
+      if (muteIndex == 0) {
+        this.kickAudio.volume = 1;
+      } else if (muteIndex == 1) {
+        this.snareAudio.volume = 1;
+      } else if (muteIndex == 2) {
+        this.hihatAudio.volume = 1;
+      }
+    }
+  }
+}
 const drumKit = new DrumKit();
 
 //Event listeners
@@ -96,7 +127,14 @@ drumKit.playBtn.addEventListener("click", () => {
 });
 
 drumKit.selects.forEach((select) => {
-  select.addEventListener("change", () => {
+  select.addEventListener("change", (event) => {
     drumKit.changeSound(event);
+  });
+});
+
+drumKit.muteBtns.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    drumKit.muteSound(event);
+    drumKit.updateBtn();
   });
 });
