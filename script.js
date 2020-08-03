@@ -7,10 +7,13 @@ class DrumKit {
     this.hihatAudio = document.querySelector(".hihat-sound");
     this.index = 0;
     this.beatsPerMin = 150;
+    this.isPlaying = null;
   }
+
   activePad() {
     this.classList.toggle("active");
   }
+
   repeat() {
     let step = this.index % 8;
     const activeTiles = document.querySelectorAll(`.tile${step}`);
@@ -22,24 +25,41 @@ class DrumKit {
       if (tile.classList.contains("active")) {
         //Checking sound types
         if (tile.classList.contains("kick-pad")) {
+          this.kickAudio.currentTime = 0;
           this.kickAudio.play();
-          this.kickAudio.currentTime = 0;
         } else if (tile.classList.contains("snare-pad")) {
+          this.snareAudio.currentTime = 0;
           this.snareAudio.play();
-          this.kickAudio.currentTime = 0;
         } else if (tile.classList.contains("hihat-pad")) {
+          this.hihatAudio.currentTime = 0;
           this.hihatAudio.play();
-          this.kickAudio.currentTime = 0;
         }
       }
     });
     this.index++;
   }
+
   start() {
     const interval = (60 / this.beatsPerMin) * 1000;
-    setInterval(() => {
-      this.repeat();
-    }, interval);
+
+    //Checking if playing
+    if (this.isPlaying == null) {
+      this.isPlaying = setInterval(() => {
+        this.repeat();
+      }, interval);
+    } else {
+      //Clearing interval
+      clearInterval(this.isPlaying);
+      this.isPlaying = null;
+    }
+  }
+
+  updateBtn() {
+    if (this.isPlaying == null) {
+      this.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    } else {
+      this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    }
   }
 }
 
@@ -54,4 +74,5 @@ drumKit.pads.forEach((pad) => {
 
 drumKit.playBtn.addEventListener("click", () => {
   drumKit.start();
+  drumKit.updateBtn();
 });
