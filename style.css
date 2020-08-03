@@ -1,7 +1,105 @@
+/* Removing defaults */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: "montserrat", sans-serif;
+}
+
+i,
+svg {
+  pointer-events: none;
+}
+
+.kick-pad,
+.snare-pad,
+.hihat-pad {
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.kick-pad {
+  background: rgb(167, 236, 253);
+}
+
+.snare-pad {
+  background: rgb(213, 168, 255);
+}
+
+.hihat-pad {
+  background: rgb(255, 220, 168);
+}
+
+.kick-pad .active {
+  background: rgb(97, 192, 216);
+}
+
+.snare-pad .active {
+  background: rgb(161, 98, 219);
+}
+
+.hihat-pad .active {
+  background: rgb(226, 176, 101);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.kick-track,
+.snare-track,
+.hihat-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 5rem;
+}
+
+.kick,
+.snare,
+.hihat {
+  display: flex;
+}
+
+.controls {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2rem;
+}
+
+.controls select {
+  padding: 0.5rem;
+  font-family: "montserrat", sans-serif;
+}
+
+.controls button,
+.play {
+  padding: 1rem;
+  border: none;
+  outline: none;
+  color: white;
+  background: rgb(126, 126, 126);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.5s ease;
+}
+
+.play {
+  margin-top: 6rem;
+  padding: 1.2rem 2rem;
+  font-size: 1.5rem;
 }
