@@ -17,6 +17,21 @@ class DrumKit {
     //Looping through pads
     activeTiles.forEach((tile) => {
       tile.style.animation = `playTrack 0.3s alternate ease-in-out 2`;
+
+      //Checking for active pads
+      if (tile.classList.contains("active")) {
+        //Checking sound types
+        if (tile.classList.contains("kick-pad")) {
+          this.kickAudio.play();
+          this.kickAudio.currentTime = 0;
+        } else if (tile.classList.contains("snare-pad")) {
+          this.snareAudio.play();
+          this.kickAudio.currentTime = 0;
+        } else if (tile.classList.contains("hihat-pad")) {
+          this.hihatAudio.play();
+          this.kickAudio.currentTime = 0;
+        }
+      }
     });
     this.index++;
   }
