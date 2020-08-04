@@ -68,6 +68,14 @@ svg {
   margin-top: 5rem;
 }
 
+.kick-volume {
+  margin-left: 1rem;
+}
+
+.hihat-volume {
+  margin-left: 0.8rem;
+}
+
 .kick,
 .snare,
 .hihat {
@@ -123,6 +131,7 @@ svg {
   cursor: pointer;
   border-radius: 1rem;
   width: 100%;
+  outline: none;
 }
 
 .tempo p {
